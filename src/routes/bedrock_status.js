@@ -20,7 +20,7 @@ module.exports=async function(req, res) {
         response = {
             online:true, 
             host: result.data.host, 
-            ip:result.data.ip ?? (await dns.lookup(host).catch(e=>{})).address, 
+            ip:result.data.ip ?? (await dns.lookup(host).catch(e=>{}))?.address, 
             port: result.data.port, 
             retrived_at: Date.now(),
             expires_at: Date.now()+ms(process.env.JAVA_STATUS_CACHE),

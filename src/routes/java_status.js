@@ -22,7 +22,7 @@ module.exports=async function (req, res) {
         response = {
             online:true, 
             host: result.data.host, 
-            ip:result.data.ip ?? (await dns.lookup(result.data.host).catch(e=>{})).address, 
+            ip:result.data.ip ?? (await dns.lookup(result.data.host).catch(e=>{}))?.address, 
             port: result.data.port, 
             retrived_at: Date.now(),
             expires_at: Date.now()+ms(process.env.JAVA_STATUS_CACHE),
@@ -35,7 +35,7 @@ module.exports=async function (req, res) {
             .exec();
     }).catch(err => {
         res.writeHead(500)
-        console.log(`Error while fetching Java Status for server (${result.data.host}:${result.data.port}): \n${err.message}`)
+        console.log(`Error while fetching Java Status for server (${result.data.host}:${result.data.port}): \n${err.stack}`)
         if(err.message.includes("getaddrinfo ENOTFOUND") || err.message.includes("connect ECONNREFUSED") || err.message.includes("Server is offline or unreachable")){
             let response = {
                 online: false, 

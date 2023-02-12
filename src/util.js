@@ -1,6 +1,6 @@
 const dns = require('dns/promises')
 async function parseAddress(address){
-    let split = address.split(":");
+    let split = address.toLowerCase().split(":");
     if(split.length < 1) return {success: false, error: "Invalid address."}
     if(split.length < 2) {
         if(new RegExp(/^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/).test(split[0])) 
