@@ -8,6 +8,7 @@ const app = Polka();
 
 app.use(require('express-status-monitor')())
 
+app.get('/ping', (req,res) => res.send("OK"));
 app.get('/status/java/:address', require('./routes/java_status'))
 app.get('/status/bedrock/:address', require('./routes/bedrock_status'))
 app.get('/icon/:address', require('./routes/icon'))
