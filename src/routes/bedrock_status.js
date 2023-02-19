@@ -16,7 +16,7 @@ module.exports=async function(req, res) {
         return global.redis.incr(`bedrock:${result.data.host}-${result.data.port}:hits`)
     }
 
-    statusBedrock(result.data.port == 25565 ? result.data.host : result.data.ip, result.data.port,{enableSRV: true, timeout: 5000}).then(async response => {
+    statusBedrock(result.data.port == 25565 ? result.data.host : result.data.ip, result.data.port,{enableSRV: false, timeout: 5000}).then(async response => {
         response = {
             online:true, 
             host: result.data.host, 
@@ -29,7 +29,7 @@ module.exports=async function(req, res) {
         delete response.portIPv4;
         delete response.portIPv6;
         delete response.gameModeID
-        if(!response.srvRecord) delete response.srvRecord
+        delete response.srvRecord
         
         res.end(JSON.stringify(response))
         global.redis.pipeline()
