@@ -1,14 +1,14 @@
 const { sendVote } = require("minecraft-server-util")
 
 module.exports=async function(req,res) {
-    const {username, host, port, timestamp, secret, apiKey} = req.body   
+    const {username, host, port, timestamp, secret} = req.body   
 
     await sendVote(host, port, {
         username,
         address,
         timestamp: timestamp ?? Date.now(),
         token: secret,
-        serviceName: apiKey === process.env.API_KEY ? "MCSRV.org" : "MCSRV.org - Test Vote", 
+        serviceName:"MCSRV.org", 
         timeout: 5000, 
     }).then(() => {
         return res.end(JSON.stringify({success: true}))
