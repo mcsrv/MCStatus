@@ -7,6 +7,8 @@ const redis = new Redis(process.env.REDIS_URL); global.redis=redis;
 const app = Polka();
 
 app.use(require('express-status-monitor')())
+app.use(require('cors')({ origin: "mcsrv.org" }))
+
 
 app.get('/ping', (req,res) => res.end("OK"));
 app.get('/status/java/:address', require('./routes/java_status'))
