@@ -7,7 +7,7 @@ const redis = new Redis(process.env.REDIS_URL); global.redis=redis;
 const app = Polka();
 
 app.use(require('express-status-monitor')())
-app.use(require('cors')({ origin: "mcsrv.org" }))
+app.use(require('cors')())
 
 
 app.get('/ping', (req,res) => res.end("OK"));
