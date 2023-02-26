@@ -1,11 +1,10 @@
 const { sendVote } = require("minecraft-server-util")
 
 module.exports=async function(req,res) {
-    const {username, host, port, timestamp, secret} = req.body   
+    const {username, address, port, timestamp, secret} = req.body   
 
-    await sendVote(host, port, {
+    await sendVote(address, port, {
         username,
-        address,
         timestamp: timestamp ?? Date.now(),
         token: secret,
         serviceName:"MCSRV.org", 

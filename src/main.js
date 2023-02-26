@@ -14,7 +14,7 @@ app.get('/ping', (req,res) => res.end("OK"));
 app.get('/status/java/:address', require('./routes/java_status'))
 app.get('/status/bedrock/:address', require('./routes/bedrock_status'))
 app.get('/icon/:address', require('./routes/icon'))
-app.post('/vote', require('./routes/vote'))
+app.use(require('body-parser').json()).post('/vote', require('./routes/vote'))
 
 
 app.listen(process.env.PORT, (err) => {
