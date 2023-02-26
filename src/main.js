@@ -18,7 +18,7 @@ app.post('/vote', require('./routes/vote'))
 
 
 app.listen(process.env.PORT, (err) => {
-    if(err) { console.log(err); process.env(1) };
+    if(err) { console.log(err); process.exit(1) };
     console.log(`[MCStatus] Listening on port: ` + chalk.green(process.env.PORT))
 })
 redis.on('connect', () => console.log("[MCStatus] Connected to Redis DB."))
