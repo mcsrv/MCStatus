@@ -17,8 +17,7 @@ module.exports = async function (req, res) {
 
     }
 
-
-    status(result.data.port == 25565 ? result.data.host : result.data.ip, result.data.port, { enableSRV: false, timeout: 5000 }).then(async response => {
+    status(result.data.port == 25565 ? result.data.host : result.data.ip, result.data.port, { enableSRV: true, timeout: 5000 }).then(async response => {
         response = {
             online: true,
             host: result.data.host,
