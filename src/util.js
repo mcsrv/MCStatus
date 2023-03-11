@@ -14,7 +14,7 @@ async function parseAddress(address){
     if(new RegExp(/^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)\.?\b){4}$/).test(split[0])) 
         return {success: true, data: {host: split[0], port: parseInt(split[1])}}
     if(new RegExp(/^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]$/).test(split[0]))
-        return {success: true, data: {host: split[0], ip: (await dns.lookup(split[0]).catch(e=>{})).address, port: parseInt(split[1])}}
+        return {success: true, data: {host: split[0], ip: (await dns.lookup(split[0]).catch(e=>{}))?.address, port: parseInt(split[1])}}
     return {success: false, error: "Invalid address."}
 }
 

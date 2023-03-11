@@ -26,9 +26,10 @@ module.exports = async function (req, res) {
             retrived_at: Date.now(),
             expires_at: Date.now() + ms(process.env.JAVA_STATUS_CACHE),
             ...response
-        }
+        };
+        
         delete response["srvRecord"];
-        delete response["roundTripLatency"]
+        delete response["roundTripLatency"];
 
         res.end(JSON.stringify(response))
         global.redis.pipeline()
